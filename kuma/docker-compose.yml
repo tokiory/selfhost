@@ -7,3 +7,5 @@ services:
     volumes:
       - uptime-kuma:/app/data
     restart: unless-stopped
+volumes:
+  uptime-kuma:
