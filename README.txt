@@ -9,7 +9,7 @@ Currently the following devices are running on my network:
 
 My Raspberry Pi 5 is the main device hosting all the services. It is a powerful and energy-efficient single-board computer that allows me to run multiple services simultaneously without any performance issues.
 
-Raspberry Pi hostname is tokiopi, so all services inside local network are accessible via **tokiopi.local**.
+Raspberry Pi hostname is **tokiopi**, so all services inside local network are accessible via **tokiopi.local**.
 For example, if I have a service running on port 8080, I can access it by going to http://tokiopi.local:8080 in my web browser.
 
 Other devices, that can access the services running on Raspberry Pi 5, include:
@@ -20,6 +20,9 @@ Other devices, that can access the services running on Raspberry Pi 5, include:
 - Our common iPad (M4)
 - Our common Mac Mini (M1, 16GB RAM)
 
+All these devices are connected to the same local network via Keenetic Router, also all these devices has static IP addresses, so they can access the services running on Raspberry Pi 5 without any issues.
+
+**Future Plans**:
 In the near future I'll buy an SSD for Raspberry Pi 5 and Zigbee dongle, so I can run Home Assistant and Zigbee2MQTT to control smart home devices.
 
 === === ===
