@@ -20,7 +20,7 @@ Other devices, that can access the services running on Raspberry Pi 5, include:
 - Our common iPad (M4)
 - Our common Mac Mini (M1, 16GB RAM)
 
-All these devices are connected to the same local network via Keenetic Router, also all these devices has static IP addresses, so they can access the services running on Raspberry Pi 5 without any issues.
+All these devices are connected to the same local network via Keenetic Router, also all these devices has static IP addresses, so they can access the services running on Raspberry Pi 5 without any issues bidirectionally.
 
 **Future Plans**:
 In the near future I'll buy an SSD for Raspberry Pi 5 and Zigbee dongle, so I can run Home Assistant and Zigbee2MQTT to control smart home devices.
@@ -30,3 +30,4 @@ In the near future I'll buy an SSD for Raspberry Pi 5 and Zigbee dongle, so I ca
 ## Services
 - [Uptime Kuma](https://uptime.kuma.pet/): For monitoring the availability of services and their uptime;
 - [Pihole](https://pi-hole.net/): For blocking ads and trackers at the network level;
+- [Gitea](https://gitea.io/en-us/): For hosting my own Git repositories without relying on third-party services like GitHub or GitLab;
