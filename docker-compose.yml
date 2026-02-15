@@ -1,0 +1,20 @@
+include:
+  - path: "./traefik/docker-compose.yml"
+    project_directory: "./traefik"
+
+  - path: "./pihole/docker-compose.yml"
+    project_directory: "./pihole"
+
+  - path: "./gitea/docker-compose.yml"
+    project_directory: "./gitea"
+
+  - path: "./gitea/docker-compose.yml"
+    project_directory: "./gitea"
+
+  - path: "./kuma/docker-compose.yml"
+    project_directory: "./kuma"
+
+networks:
+  traefik:
+    external: true
+    name: traefik_proxy
