@@ -31,3 +31,18 @@ In the near future I'll buy an SSD for Raspberry Pi 5 and Zigbee dongle, so I ca
 - [Uptime Kuma](https://uptime.kuma.pet/): For monitoring the availability of services and their uptime;
 - [Pihole](https://pi-hole.net/): For blocking ads and trackers at the network level;
 - [Gitea](https://gitea.io/en-us/): For hosting my own Git repositories without relying on third-party services like GitHub or GitLab;
+- [Traefik](https://traefik.io/): Reverse proxy for routing all web services through one entrypoint.
+
+### Reverse Proxy Setup
+Each web service is routed by Traefik using host-based rules.
+
+1. Copy each `*.env.example` to `.env` in these folders and set hostnames:
+   - `traefik/`
+   - `kuma/`
+   - `gitea/`
+   - `pihole/`
+2. Start Traefik first:
+   - `docker compose -f traefik/docker-compose.yml up -d`
+3. Start service stacks as usual from each service directory.
+
+After that, web UIs are available through the configured hostnames on port `80`.

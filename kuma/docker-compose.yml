@@ -2,11 +2,23 @@ services:
   kuma:
     container_name: kuma
     image: louislam/uptime-kuma:2
-    ports:
-      - "3001:3001"
     volumes:
       - uptime-kuma:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.kuma.rule=Host(`${KUMA_HOST:?set in kuma/.env}`)
+      - traefik.http.routers.kuma.entrypoints=web
+      - traefik.http.services.kuma.loadbalancer.server.port=3001
+    networks:
+      - default
+      - proxy
     restart: unless-stopped
+
 volumes:
   uptime-kuma:
+
+networks:
+  proxy:
+    external: true
+    name: traefik_proxy
