@@ -36,13 +36,27 @@ In the near future I'll buy an SSD for Raspberry Pi 5 and Zigbee dongle, so I ca
 ### Reverse Proxy Setup
 Each web service is routed by Traefik using host-based rules.
 
-1. Copy each `*.env.example` to `.env` in these folders and set hostnames:
-   - `traefik/`
-   - `kuma/`
-   - `gitea/`
-   - `pihole/`
-2. Start Traefik first:
-   - `docker compose -f traefik/docker-compose.yml up -d`
-3. Start service stacks as usual from each service directory.
+1. Create Network:
+- `docker network create traefik`
 
-After that, web UIs are available through the configured hostnames on port `80`.
+2. Change `.env` in the root of the repo:
+- `cp .env{.example,}`
+- `nvim .env`
+
+There should be two variables:
+- `HOST_NAME` - $HOST or $HOSTNAME variable from system
+- `HOST_IP` - Host machine local IP address
+
+3. Start core docker-compose that includes all services:
+- `docker compose up -d`
+
+### Troubleshooting
+
+1. Bad gateway errors from subdomains:
+- Check traefik network
+
+2. Can not resolve domains:
+- Check if your browser doesn't use any proxy
+- Check domains inside labels of each `docker-compose.yml`
+
+**Also note**: by default traefik will try to use default subdomains created by container name: `{{ CONTAINER_NAME }}.${ HOST_NAME }.local`
