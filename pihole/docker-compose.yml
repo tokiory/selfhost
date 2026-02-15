@@ -21,7 +21,9 @@ services:
     volumes:
       # For persisting Pi-hole's databases and common configuration file
       - "./etc-pihole:/etc/pihole"
-      - "./resolvers/custom.list:/etc/pihole/custom.list:ro"
+    configs:
+      - source: custom_list
+        target: /etc/pihole/custom.list
       # Uncomment the below if you have custom dnsmasq config files that you want to persist. Not needed for most starting fresh with Pi-hole v6. If you're upgrading from v5 you and have used this directory before, you should keep it enabled for the first v6 container start to allow for a complete migration. It can be removed afterwards. Needs environment variable FTLCONF_misc_etc_dnsmasq_d: 'true'
       #- './etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
@@ -36,7 +38,7 @@ services:
       - SYS_NICE
     labels:
       - traefik.enable=true
-      - traefik.http.routers.pihole.rule=Host(`pihole.${HOST}.local`)
+      - traefik.http.routers.pihole.rule=Host(`pihole.${HOST_NAME}.local`)
       - traefik.http.routers.pihole.entrypoints=web
       - traefik.http.services.pihole.loadbalancer.server.port=80
     networks:
@@ -48,3 +50,12 @@ networks:
   proxy:
     external: true
     name: traefik_proxy
+
+configs:
+  custom_list:
+    content: |
+      ${HOST_IP} ${HOST_NAME}
+      ${HOST_IP} uptime.${HOST_NAME}.local
+      ${HOST_IP} git.${HOST_NAME}.local
+      ${HOST_IP} pihole.${HOST_NAME}.local
+      ${HOST_IP} dashboard.${HOST_NAME}.local

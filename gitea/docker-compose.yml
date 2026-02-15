@@ -14,7 +14,7 @@ services:
       - "22:22"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.gitea.rule=Host(`git.${HOST}.local`)
+      - traefik.http.routers.gitea.rule=Host(`git.${HOST_NAME}.local`)
       - traefik.http.routers.gitea.entrypoints=web
       - traefik.http.services.gitea.loadbalancer.server.port=3000
     networks:
