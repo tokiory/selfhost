@@ -43,13 +43,12 @@ services:
       - traefik.http.services.pihole.loadbalancer.server.port=80
     networks:
       - default
-      - proxy
+      - traefik
     restart: unless-stopped
 
 networks:
-  proxy:
+  traefik:
     external: true
-    name: traefik_proxy
 
 configs:
   custom_list:

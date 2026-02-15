@@ -12,13 +12,12 @@ services:
       - traefik.http.services.kuma.loadbalancer.server.port=3001
     networks:
       - default
-      - proxy
+      - traefik
     restart: unless-stopped
 
 volumes:
   uptime-kuma:
 
 networks:
-  proxy:
+  traefik:
     external: true
-    name: traefik_proxy

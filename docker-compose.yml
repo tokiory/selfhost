@@ -17,4 +17,3 @@ include:
 networks:
   traefik:
     external: true
-    name: traefik_proxy
