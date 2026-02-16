@@ -13,13 +13,15 @@ services:
       FTLCONF_webserver_api_password: "${WEBPASSWORD}"
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'ALL'
       FTLCONF_dns_listeningMode: "ALL"
+      FTLCONF_dns_hosts: |
+        ${HOST_IP} router.${HOST_NAME}.local
+        ${HOST_IP} uptime.${HOST_NAME}.local
+        ${HOST_IP} git.${HOST_NAME}.local
+        ${HOST_IP} pihole.${HOST_NAME}.local
     # Volumes store your data between container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
       - "./etc-pihole:/etc/pihole"
-    configs:
-      - source: custom_list
-        target: /etc/pihole/custom.list
       # Uncomment the below if you have custom dnsmasq config files that you want to persist. Not needed for most starting fresh with Pi-hole v6. If you're upgrading from v5 you and have used this directory before, you should keep it enabled for the first v6 container start to allow for a complete migration. It can be removed afterwards. Needs environment variable FTLCONF_misc_etc_dnsmasq_d: 'true'
       #- './etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
@@ -45,11 +47,3 @@ services:
 networks:
   traefik:
     external: true
-
-configs:
-  custom_list:
-    content: |
-      ${HOST_IP} uptime.${HOST_NAME}.local
-      ${HOST_IP} git.${HOST_NAME}.local
-      ${HOST_IP} pihole.${HOST_NAME}.local
-      ${HOST_IP} dashboard.${HOST_NAME}.local
