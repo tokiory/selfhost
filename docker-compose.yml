@@ -14,6 +14,9 @@ include:
   - path: "./kuma/docker-compose.yml"
     project_directory: "./kuma"
 
+  - path: "./glance/docker-compose.yml"
+    project_directory: "./glance"
+
 networks:
   traefik:
     external: true

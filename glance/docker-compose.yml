@@ -1,0 +1,24 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - traefik
+    volumes:
+      - ./config:/app/config
+      - ./assets:/app/assets
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    expose:
+      - 8080
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.glance.rule=Host(`${HOST_NAME}.local`)
+      - traefik.http.routers.glance.entrypoints=web
+      - traefik.http.services.glance.loadbalancer.server.port=8080
+
+networks:
+  traefik:
+    external: true

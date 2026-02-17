@@ -1,0 +1,92 @@
+- name: Home
+  hide-desktop-navigation: true
+  columns:
+    - size: small
+      widgets:
+        - type: calendar
+          title: Календарь
+          first-day-of-week: monday
+
+        - type: twitch-channels
+          title: Twitch
+          channels:
+            - t2x2
+            - stintik
+            - bratishkinoff
+            - dmitry_lixxx
+            - theprimeagen
+            - bashbunni
+
+        - type: releases
+          title: Недавние релизы
+          cache: 24m # 60 requests per day, so 24h -> 1440min / 60req is 24m
+          repositories:
+            - zed-industries/zed
+            - neovim/neovim
+            - anomalyco/opencode
+
+    - size: full
+      widgets:
+        - type: group
+          widgets:
+            - type: rss
+              limit: 10
+              title: Habr
+              collapse-after: 3
+              feeds:
+                - url: https://habr.com/ru/rss/feed/709193224f79f62d496e2281af389a2f?fl=ru&types%5B%5D=article&types%5B%5D=post&types%5B%5D=news&limit=100
+                  title: Habr
+
+            - type: rss
+              limit: 10
+              title: vc.ru
+              collapse-after: 3
+              feeds:
+                - url: https://vc.ru/rss
+                  title: vc.ru
+
+            - type: rss
+              limit: 10
+              title: DTF
+              collapse-after: 3
+              feeds:
+                - url: https://dtf.ru/rss
+                  title: DTF
+
+        - type: group
+          widgets:
+            - type: reddit
+              subreddit: ExperiencedDevs
+              show-thumbnails: true
+            - type: reddit
+              subreddit: ClaudeAI
+              show-thumbnails: true
+            - type: reddit
+              subreddit: ZedEditor
+              show-thumbnails: true
+            - type: reddit
+              subreddit: neovim
+              show-thumbnails: true
+            - type: reddit
+              subreddit: commandline
+              show-thumbnails: true
+
+    - size: small
+      widgets:
+        - type: weather
+          title: Погода
+          location: Rostov-on-Don, Russia
+          units: metric
+          cache: 2h
+          hour-format: 24h
+
+        - type: dns-stats
+          title: Pihole
+          service: pihole-v6
+          url: http://pihole.tokiopi.local
+          password: ${PIHOLE_PASSWORD}
+
+        - type: docker-containers
+          title: Контейнеры
+          hide-by-default: false
+

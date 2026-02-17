@@ -32,6 +32,7 @@ In the near future I'll buy an SSD for Raspberry Pi 5 and Zigbee dongle, so I ca
 - [Pihole](https://pi-hole.net/): For blocking ads and trackers at the network level;
 - [Gitea](https://gitea.io/en-us/): For hosting my own Git repositories without relying on third-party services like GitHub or GitLab;
 - [Traefik](https://traefik.io/): Reverse proxy for routing all web services through one entrypoint.
+- [Glance](https://github.com/glanceapp/glance): Dashboard for my adhd head
 
 ### Reverse Proxy Setup
 Each web service is routed by Traefik using host-based rules.
