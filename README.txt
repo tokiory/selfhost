@@ -51,6 +51,30 @@ There should be two variables:
 3. Start core docker-compose that includes all services:
 - `docker compose up -d`
 
+### DNS
+DNS is handled by Pihole. It has `FTLCONF_dns_hosts` variable, that edits `pihole.toml` inside `etc-pihole` volume directory, that makes new DNS records.
+All devices inside local network should use Pihole DNS to successfully resolve domains of services running on Raspberry Pi 5.
+                                                                      
+    +---------------+          +--------------+                    
+    |               |          |              |                    
+    |    Device     ------------    Router    \                    
+    |               |          |              |-\                  
+    +---------------+          +-------|------+  -\                
+            \                          |           \               
+             -\                        |            -\             
+               \               +-------|------+       -\           
+                -\             |              |         -  DNS     
+                  \            | Raspberry Pi |         /          
+                   -\          |              |        /           
+               DNS   -\        +-------|------+       /            
+                       \               |            /-             
+                        -\             |           /               
+                          \    +-------|------+   /                
+                           -\  |              |  /                 
+                             - |    Pihole    | -                  
+                               |              |                    
+                               +--------------+                    
+
 ### Troubleshooting
 
 1. Bad gateway errors from subdomains:
