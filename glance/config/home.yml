@@ -24,6 +24,7 @@
             - zed-industries/zed
             - neovim/neovim
             - anomalyco/opencode
+            - anyproto/anytype-ts
 
     - size: full
       widgets:
@@ -52,6 +53,16 @@
               feeds:
                 - url: https://dtf.ru/rss
                   title: DTF
+
+            - type: rss
+              limit: 10
+              title: Local Blogs
+              collapse-after: 3
+              feeds:
+                - url: https://www.chrisgregori.dev/rss.xml
+                  title: "Chris Gregori's Blog"
+                - url: https://overreacted.io/rss.xml
+                  title: "overreacted"
 
         - type: group
           widgets:
